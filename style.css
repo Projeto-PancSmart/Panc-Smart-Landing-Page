@@ -82,18 +82,20 @@ nav a:hover {
   transform: scale(1.15);
 }
 
-.btn-header {
-  background: #2d6a4f;
+.btn {
+  display: inline-block;
+  margin-top: 20px; /* espaço entre o texto e o botão */
+  padding: 12px 24px;
+  background-color: #1a7d32;
   color: #fff;
-  padding: 0.6rem 1.2rem;
+  font-weight: bold;
   border-radius: 25px;
   text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
-.btn-header:hover {
-  background: #1b4332;
+.btn:hover {
+  background-color: #145c26;
 }
 
 /* Hero */

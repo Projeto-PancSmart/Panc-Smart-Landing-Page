@@ -1,127 +1,196 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PANC Smart - Estufa Inteligente</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 
   <!-- Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
   <!-- Header -->
-  <header>
-    <div class="logo"><img src="imagens/panc-apresentacao.png" alt="LogoTipo PancSmart"></div>
-    <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#como-funciona">Como Funciona</a>
-      <a href="#beneficios">Benefícios</a>
-      <a href="#contato">Contato</a>
+  <header class="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
+    <div class="logo">
+      <img src="imagens/panc-apresentacao.png" alt="Logo PANC Smart" class="h-12">
+    </div>
+    <nav class="hidden md:flex space-x-6 font-medium">
+      <a href="#sobre" class="hover:text-green-700 transition">Sobre</a>
+      <a href="#como-funciona" class="hover:text-green-700 transition">Como Funciona</a>
+      <a href="#beneficios" class="hover:text-green-700 transition">Benefícios</a>
+      <a href="#contato" class="hover:text-green-700 transition">Contato</a>
     </nav>
-    <div class="header-actions">
-      <a href="https://www.instagram.com/panc_smart?igsh=MWliaXB5cXR1ajRlOA==" target="_blank" class="icon-instagram">
+    <div class="flex items-center space-x-4">
+      <a href="https://www.instagram.com/panc_smart" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full text-white bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-700 hover:scale-110 transition">
         <i class="fa-brands fa-instagram"></i>
       </a>
-      <a href="#contato" class="btn-header">Quero Conhecer</a>
+      <a href="#contato" class="bg-green-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-900 transition">
+        Quero Conhecer
+      </a>
     </div>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Cultive saúde, tecnologia e sustentabilidade</h1>
-      <p>A primeira estufa inteligente projetada para o cultivo de PANCs.</p>
-      <a href="#sobre" class="btn-primary">Saiba Mais</a>
+  <section class="grid md:grid-cols-2 items-center gap-6 px-8 md:px-16 py-12" id="hero">
+    <div class="space-y-6" data-aos="fade-right">
+      <h1 class="text-4xl md:text-5xl font-bold text-green-900">Cultive saúde, tecnologia e sustentabilidade</h1>
+      <p class="text-lg text-gray-600">A primeira estufa inteligente projetada para o cultivo de PANCs.</p>
+      <p></p>
+      <a href="#sobre" class="bg-green-600 text-white px-6 py-3 rounded-full font-semibold shadow hover:bg-green-800 transition">Saiba Mais</a>
     </div>
-    <div class="hero-img">
-      <img src="imagens/estufa.webp" alt="Estufa inteligente">
+    <div data-aos="fade-left">
+      <img src="imagens/estufa.webp" alt="Estufa Inteligente" class="rounded-2xl shadow-lg">
     </div>
   </section>
 
   <!-- Sobre -->
-  <section id="sobre" class="sobre">
-    <h2>O que são PANCs?</h2>
-    <p>Plantas Alimentícias Não Convencionais (PANCs) são espécies ricas em nutrientes e pouco exploradas na alimentação do dia a dia.</p>
-    <div class="cards">
-      <div class="card">
-        <img src="imagens/ora-pro-nobis.webp" alt="Ora-pro-nóbis">
-        <h3>Ora-pro-nóbis</h3>
-        <p>Rica em proteínas e muito usada na culinária mineira.</p>
+  <section id="sobre" class="px-8 md:px-16 py-12 bg-white">
+    <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">O que são PANCs?</h2>
+    <p class="text-center max-w-2xl mx-auto text-gray-600" data-aos="fade-up">
+      Plantas Alimentícias Não Convencionais (PANCs) são espécies ricas em nutrientes e pouco exploradas na alimentação do dia a dia.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6 mt-10" data-aos="fade-up">
+      <div class="bg-gray-50 rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+        <img src="imagens/ora-pro-nobis.webp" alt="Ora-pro-nóbis" class="rounded-lg mb-3">
+        <h3 class="text-xl font-semibold">Ora-pro-nóbis</h3>
+        <p class="text-gray-600">Rica em proteínas e muito usada na culinária mineira.</p>
       </div>
-      <div class="card">
-        <img src="imagens/taioba.webp" alt="Taioba">
-        <h3>Taioba</h3>
-        <p>Fonte de ferro e vitaminas, perfeita para refogados.</p>
+      <div class="bg-gray-50 rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+        <img src="imagens/taioba.webp" alt="Taioba" class="rounded-lg mb-3">
+        <h3 class="text-xl font-semibold">Taioba</h3>
+        <p class="text-gray-600">Fonte de ferro e vitaminas, perfeita para refogados.</p>
       </div>
-      <div class="card">
-        <img src="imagens/beldroega.webp" alt="Beldroega">
-        <h3>Beldroega</h3>
-        <p>Contém ômega 3 natural, ideal para saladas frescas.</p>
+      <div class="bg-gray-50 rounded-xl shadow hover:shadow-lg transition p-4 text-center">
+        <img src="imagens/beldroega.webp" alt="Beldroega" class="rounded-lg mb-3">
+        <h3 class="text-xl font-semibold">Beldroega</h3>
+        <p class="text-gray-600">Contém ômega 3 natural, ideal para saladas frescas.</p>
       </div>
     </div>
   </section>
 
   <!-- Como funciona -->
-  <section id="como-funciona" class="como-funciona">
-    <h2>Como funciona a PANC Smart?</h2>
-    <div class="steps">
-      <div class="step">
-        <i class="fa-solid fa-microchip"></i>
-        <h3>Sensores Inteligentes</h3>
-        <p>Monitoram luz, umidade e temperatura em tempo real.</p>
+  <section id="como-funciona" class="px-8 md:px-16 py-12">
+    <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">Como funciona a PANC Smart?</h2>
+    <div class="grid md:grid-cols-3 gap-6 mt-8 text-center">
+      <div data-aos="zoom-in" class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+        <i class="fa-solid fa-microchip text-3xl text-green-700 mb-4"></i>
+        <h3 class="text-xl font-semibold">Sensores Inteligentes</h3>
+        <p class="text-gray-600">Monitoram luz, umidade e temperatura em tempo real.</p>
       </div>
-      <div class="step">
-        <i class="fa-solid fa-mobile-screen"></i>
-        <h3>Aplicativo Integrado</h3>
-        <p>Acompanhe o crescimento das plantas pelo celular.</p>
+      <div data-aos="zoom-in" data-aos-delay="150" class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+        <i class="fa-solid fa-mobile-screen text-3xl text-green-700 mb-4"></i>
+        <h3 class="text-xl font-semibold">Aplicativo Integrado</h3>
+        <p class="text-gray-600">Acompanhe o crescimento das plantas pelo celular.</p>
       </div>
-      <div class="step">
-        <i class="fa-solid fa-bell"></i>
-        <h3>Alertas Automáticos</h3>
-        <p>Receba notificações para regar ou ajustar a estufa.</p>
+      <div data-aos="zoom-in" data-aos-delay="300" class="p-6 bg-white rounded-xl shadow hover:shadow-lg transition">
+        <i class="fa-solid fa-bell text-3xl text-green-700 mb-4"></i>
+        <h3 class="text-xl font-semibold">Alertas Automáticos</h3>
+        <p class="text-gray-600">Receba notificações para regar ou ajustar a estufa.</p>
       </div>
     </div>
   </section>
 
-  <!-- Benefícios -->
-  <section id="beneficios" class="beneficios">
-    <h2>Benefícios</h2>
-    <div class="grid-beneficios">
-      <div class="beneficio">
-        <i class="fa-solid fa-droplet"></i>
-        <h3>Economia de Água</h3>
-        <p>Irrigação automatizada que reduz desperdícios.</p>
-      </div>
-      <div class="beneficio">
-        <i class="fa-solid fa-leaf"></i>
-        <h3>Saúde e Nutrição</h3>
-        <p>PANCs são superalimentos que fortalecem sua dieta.</p>
-      </div>
-      <div class="beneficio">
-        <i class="fa-solid fa-city"></i>
-        <h3>Agricultura Urbana</h3>
-        <p>Ideal para hortas comunitárias e ambientes urbanos.</p>
-      </div>
+  <!-- Adicione no <head> -->
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+
+<!-- Seção Benefícios -->
+<section id="beneficios" class="px-8 md:px-16 py-12 bg-gray-50">
+  <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">Benefícios</h2>
+  <div class="grid md:grid-cols-3 gap-8 mt-10">
+    
+    <!-- Economia de Água -->
+    <div class="bg-white rounded-xl shadow p-6 text-center hover:shadow-lg transition" data-aos="fade-up">
+      <dotlottie-wc 
+        src="https://lottie.host/a4f9bcd4-5680-48c3-ac97-aab7ad5bb0b2/YJHBsFEQ9o.lottie" 
+        style="width:120px;height:120px;margin:auto" 
+        speed="1" 
+        autoplay 
+        loop>
+      </dotlottie-wc>
+      <h3 class="text-xl font-semibold mt-3">Economia de Água</h3>
+      <p class="text-gray-600">Irrigação automatizada que reduz desperdícios.</p>
     </div>
-  </section>
+
+    <!-- Saúde e Nutrição -->
+    <div class="bg-white rounded-xl shadow p-6 text-center hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+      <dotlottie-wc 
+        src="https://lottie.host/841f2f61-bf1c-4739-9570-55201a9feda3/dFUtH2AmP6.lottie" 
+        style="width:120px;height:120px;margin:auto" 
+        speed="1" 
+        autoplay 
+        loop>
+      </dotlottie-wc>
+      <h3 class="text-xl font-semibold mt-3">Saúde e Nutrição</h3>
+      <p class="text-gray-600">PANCs são superalimentos que fortalecem sua dieta.</p>
+    </div>
+
+    <!-- Agricultura Urbana -->
+    <div class="bg-white rounded-xl shadow p-6 text-center hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="400">
+      <dotlottie-wc 
+        src="https://lottie.host/988d5e36-af80-4a4d-839b-6b004252225c/2X7cpbDJ6C.lottie" 
+        style="width:120px;height:120px;margin:auto" 
+        speed="1" 
+        autoplay 
+        loop>
+      </dotlottie-wc>
+      <h3 class="text-xl font-semibold mt-3">Agricultura Urbana</h3>
+      <p class="text-gray-600">Ideal para hortas comunitárias e ambientes urbanos.</p>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- Contato -->
-  <section id="contato">
-    <h2>Entre em contato</h2>
-    <form action="https://formsubmit.co/pancsmart9@gmail.com" method="POST">
-      <input type="text" name="name" required placeholder="Nome">
-      <input type="email" name="email" required placeholder="E-mail">
-      <textarea name="message" placeholder="Mensagem" required></textarea>
+  <section id="contato" class="px-6 md:px-16 py-12">
+    <h2 class="text-3xl font-bold text-green-800 text-center mb-8" data-aos="fade-up">Entre em contato</h2>
+    <form action="https://formsubmit.co/pancsmart9@gmail.com" method="POST" class="max-w-xl mx-auto bg-white rounded-xl shadow p-8 space-y-4" data-aos="fade-up">
+      <input type="text" name="name" required placeholder="Nome" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none">
+      <input type="email" name="email" required placeholder="E-mail" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none">
+      <textarea name="message" required placeholder="Mensagem" rows="5" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-600 outline-none"></textarea>
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://projeto-pancsmart.github.io/Panc-Smart/obrigado.html">  
-      <button type="submit">Enviar</button>
+      <button type="submit" class="w-full bg-green-700 text-white py-3 rounded-lg font-semibold hover:bg-green-900 transition">Enviar</button>
     </form>
   </section>
 
-  <!-- Footer --> 
-  <footer>
+  <!-- Footer -->
+  <footer class="bg-green-800 text-white text-center py-4 mt-auto">
     <p>🌱 PANC Smart - Projeto acadêmico de estufa inteligente para PANCs.</p>
   </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Reiniciar animações Lottie quando entram/saiem da tela
+    document.addEventListener("DOMContentLoaded", () => {
+      const lotties = document.querySelectorAll("dotlottie-wc");
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const anim = entry.target;
+          if (entry.isIntersecting) {
+            anim.play();   // toca ao entrar
+          } else {
+            anim.stop();   // para ao sair
+          }
+        });
+      }, { threshold: 0.5 });
+
+      lotties.forEach(anim => observer.observe(anim));
+    });
+  </script>
 </body>
 </html>

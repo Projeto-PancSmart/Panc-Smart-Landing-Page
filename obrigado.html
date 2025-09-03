@@ -2,15 +2,17 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Obrigado - PANC Smart</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-<body>
-  <main class="obrigado-container">
-    <h1>Obrigado pelo contato! 🌱</h1>
-    <p>Recebemos sua mensagem e entraremos em contato em breve.</p>
-    <a href="index.html" class="btn-primary">Voltar à Página Inicial</a>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+  <main class="bg-white rounded-xl shadow-lg p-8 max-w-lg text-center space-y-6">
+    <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width:200px;height:200px;margin:auto" loop autoplay></lottie-player>
+    <h1 class="text-3xl font-bold text-green-700">Obrigado pelo contato! 🌱</h1>
+    <p class="text-gray-600">Recebemos sua mensagem e entraremos em contato em breve.</p>
+    <a href="index.html" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition">Voltar à Página Inicial</a>
   </main>
 </body>
 </html>
