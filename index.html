@@ -4,41 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PANC Smart - Estufa Inteligente</title>
-
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Lottie -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 
-  <!-- Ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
-  <!-- Header -->
-  <header class="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
-    <div class="logo">
-      <img src="imagens/panc-apresentacao.png" alt="Logo PANC Smart" class="h-12">
-    </div>
-    <nav class="hidden md:flex space-x-6 font-medium">
-      <a href="#sobre" class="hover:text-green-700 transition">Sobre</a>
-      <a href="#como-funciona" class="hover:text-green-700 transition">Como Funciona</a>
-      <a href="#beneficios" class="hover:text-green-700 transition">Benefícios</a>
-      <a href="#contato" class="hover:text-green-700 transition">Contato</a>
-    </nav>
-    <div class="flex items-center space-x-4">
-      <a href="https://www.instagram.com/panc_smart" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full text-white bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-700 hover:scale-110 transition">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="#contato" class="bg-green-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-900 transition">
-        Quero Conhecer
-      </a>
-    </div>
-  </header>
+
+<header class="flex justify-between items-center px-6 py-4 bg-white shadow-md sticky top-0 z-50">
+  <div class="logo">
+    <img src="imagens/panc-apresentacao.png" alt="Logo PANC Smart" class="h-12">
+  </div>
+  
+  <button class="menu-toggle md:hidden">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <nav class="hidden md:flex space-x-6 font-medium">
+    <a href="#sobre" class="hover:text-green-700 transition">Sobre</a>
+    <a href="#como-funciona" class="hover:text-green-700 transition">Como Funciona</a>
+    <a href="#beneficios" class="hover:text-green-700 transition">Benefícios</a>
+    <a href="#contato" class="hover:text-green-700 transition">Contato</a>
+  </nav>
+  
+  <div class="hidden md:flex items-center space-x-4">
+    <a href="https://www.instagram.com/panc_smart" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full text-white bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-700 hover:scale-110 transition">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="#contato" class="bg-green-700 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-900 transition">
+      Quero Conhecer
+    </a>
+  </div>
+</header>
 
   <!-- Hero -->
   <section class="grid md:grid-cols-2 items-center gap-6 px-8 md:px-16 py-12" id="hero">
@@ -53,7 +54,6 @@
     </div>
   </section>
 
-  <!-- Sobre -->
   <section id="sobre" class="px-8 md:px-16 py-12 bg-white">
     <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">O que são PANCs?</h2>
     <p class="text-center max-w-2xl mx-auto text-gray-600" data-aos="fade-up">
@@ -78,7 +78,6 @@
     </div>
   </section>
 
-  <!-- Como funciona -->
   <section id="como-funciona" class="px-8 md:px-16 py-12">
     <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">Como funciona a PANC Smart?</h2>
     <div class="grid md:grid-cols-3 gap-6 mt-8 text-center">
@@ -100,15 +99,12 @@
     </div>
   </section>
 
-  <!-- Adicione no <head> -->
 <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 
-<!-- Seção Benefícios -->
 <section id="beneficios" class="px-8 md:px-16 py-12 bg-gray-50">
   <h2 class="text-3xl font-bold text-green-800 text-center mb-6" data-aos="fade-up">Benefícios</h2>
   <div class="grid md:grid-cols-3 gap-8 mt-10">
     
-    <!-- Economia de Água -->
     <div class="bg-white rounded-xl shadow p-6 text-center hover:shadow-lg transition" data-aos="fade-up">
       <dotlottie-wc 
         src="https://lottie.host/a4f9bcd4-5680-48c3-ac97-aab7ad5bb0b2/YJHBsFEQ9o.lottie" 
@@ -134,7 +130,6 @@
       <p class="text-gray-600">PANCs são superalimentos que fortalecem sua dieta.</p>
     </div>
 
-    <!-- Agricultura Urbana -->
     <div class="bg-white rounded-xl shadow p-6 text-center hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="400">
       <dotlottie-wc 
         src="https://lottie.host/988d5e36-af80-4a4d-839b-6b004252225c/2X7cpbDJ6C.lottie" 
@@ -164,17 +159,14 @@
     </form>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-green-800 text-white text-center py-4 mt-auto">
     <p>🌱 PANC Smart - Projeto acadêmico de estufa inteligente para PANCs.</p>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
 
-    // Reiniciar animações Lottie quando entram/saiem da tela
     document.addEventListener("DOMContentLoaded", () => {
       const lotties = document.querySelectorAll("dotlottie-wc");
 
