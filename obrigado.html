@@ -2,17 +2,190 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Obrigado - PANC Smart</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  
+  <style>
+    :root {
+      --primary-green: #1B5E20;
+      --secondary-green: #2E7D32;
+      --light-green: #4CAF50;
+      --accent-green: #81C784;
+      --background-light: #F9FBF8;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .success-card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    
+    .success-header {
+      background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+      padding: 3rem 2rem;
+      color: white;
+    }
+    
+    .success-body {
+      padding: 3rem 2rem;
+    }
+    
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+      margin-top: 1.5rem;
+    }
+    
+    .btn-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(46, 125, 50, 0.4);
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+    }
+    
+    .leaf-decoration {
+      position: absolute;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    
+    .leaf-1 {
+      top: 10%;
+      left: 5%;
+      width: 80px;
+      transform: rotate(-15deg);
+    }
+    
+    .leaf-2 {
+      bottom: 15%;
+      right: 5%;
+      width: 100px;
+      transform: rotate(25deg);
+    }
+  </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen">
-  <main class="bg-white rounded-xl shadow-lg p-8 max-w-lg text-center space-y-6">
-    <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width:200px;height:200px;margin:auto" loop autoplay></lottie-player>
-    <h1 class="text-3xl font-bold text-green-700">Obrigado pelo contato! 🌱</h1>
-    <p class="text-gray-600">Recebemos sua mensagem e entraremos em contato em breve.</p>
-    <a href="index.html" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800 transition">Voltar à Página Inicial</a>
-  </main>
+
+<body>
+  <div class="success-card">
+    <svg class="leaf-decoration leaf-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 8C17 8 9 4 5 10C1 16 7 22 11 22C15 22 23 16 23 10C23 4 17 8 17 8Z" fill="#4CAF50"/>
+      <path d="M11 18C11 18 7 16 5 10" stroke="#2E7D32" stroke-width="1.5"/>
+    </svg>
+    
+    <svg class="leaf-decoration leaf-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 8C17 8 9 4 5 10C1 16 7 22 11 22C15 22 23 16 23 10C23 4 17 8 17 8Z" fill="#4CAF50"/>
+      <path d="M11 18C11 18 7 16 5 10" stroke="#2E7D32" stroke-width="1.5"/>
+    </svg>
+    
+    <div class="success-header">
+      <lottie-player 
+        src="https://assets4.lottiefiles.com/packages/lf20_bq485nmk.json" 
+        background="transparent" 
+        speed="1" 
+        style="width: 150px; height: 150px; margin: 0 auto;" 
+        loop 
+        autoplay>
+      </lottie-player>
+    </div>
+    
+    <div class="success-body">
+      <h1 class="text-3xl font-bold text-green-800 mb-4">Mensagem Enviada com Sucesso!</h1>
+      
+      <div class="flex items-center justify-center mb-6">
+        <div class="w-full max-w-xs">
+          <div class="h-1 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full mb-2"></div>
+          <div class="flex justify-between text-sm text-green-600">
+            <span>Envio</span>
+            <span>Processamento</span>
+            <span>Concluído</span>
+          </div>
+        </div>
+      </div>
+      
+      <p class="text-green-700/80 text-lg mb-8 leading-relaxed">
+        🌿 <strong>Obrigado pelo seu interesse na PANC Smart!</strong><br>
+        Recebemos sua mensagem e nossa equipe entrará em contato em até 48 horas.
+      </p>
+      
+      <div class="bg-green-50 rounded-xl p-4 mb-8 border border-green-100">
+        <div class="flex items-center justify-center space-x-3">
+          <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-envelope-open-text text-green-600"></i>
+          </div>
+          <div class="text-left">
+            <p class="font-medium text-green-800">Confirmação enviada</p>
+            <p class="text-sm text-green-600">Verifique sua caixa de entrada</p>
+          </div>
+        </div>
+      </div>
+      
+      <a href="index.html" class="btn-home">
+        <i class="fas fa-home"></i>
+        Voltar à Página Inicial
+      </a>
+      
+      <p class="text-green-600 text-sm mt-8">
+        Enquanto isso, siga-nos no 
+        <a href="https://www.instagram.com/panc_smart" target="_blank" class="text-green-700 font-semibold hover:underline">
+          Instagram
+        </a> 
+        para ver nossas atualizações!
+      </p>
+    </div>
+    
+    <div class="bg-green-50 py-4 border-t border-green-100">
+      <p class="text-green-700 text-sm">
+        PANC Smart • Estufa Inteligente para PANCs
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 10000);
+    
+    let seconds = 10;
+    const countdownElement = document.createElement('div');
+    countdownElement.className = 'text-green-600 text-xs mt-2';
+    countdownElement.innerHTML = `Redirecionando em <span id="countdown">${seconds}</span> segundos...`;
+    document.querySelector('.success-body').appendChild(countdownElement);
+    
+    const countdownInterval = setInterval(() => {
+      seconds--;
+      document.getElementById('countdown').textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
