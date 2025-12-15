@@ -1,4 +1,3 @@
-/* Reset e configurações base */
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +18,8 @@
   --white: #FFFFFF;
   --shadow-light: rgba(0, 0, 0, 0.05);
   --shadow-medium: rgba(0, 0, 0, 0.08);
+  --shadow-dark: rgba(0, 0, 0, 0.12);
+  --gradient-green: linear-gradient(135deg, var(--secondary-green), var(--light-green));
 }
 
 body {
@@ -35,7 +36,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
-/* Header e Navegação */
 header {
   position: sticky;
   top: 0;
@@ -44,17 +44,31 @@ header {
   box-shadow: 0 2px 15px var(--shadow-light);
   border-bottom: 1px solid rgba(76, 175, 80, 0.1);
   transition: all 0.3s ease;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
 }
 
 .logo h1 {
   font-size: 1.5rem;
   letter-spacing: -0.5px;
+  color: var(--primary-green);
 }
-  white-space: normal;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  hyphens: none;
-/* Menu Toggle (Hamburguer) */
+
+.logo p {
+  font-size: 0.75rem;
+  color: var(--secondary-green);
+  margin-top: -0.25rem;
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -77,13 +91,24 @@ header {
   transition: all 0.3s ease;
 }
 
-/* Navegação Desktop */
-nav.desktop-nav {
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+nav {
   display: flex;
   gap: 2rem;
 }
 
-nav.desktop-nav a {
+nav a {
   color: var(--text-dark);
   text-decoration: none;
   font-weight: 500;
@@ -92,11 +117,11 @@ nav.desktop-nav a {
   transition: color 0.3s ease;
 }
 
-nav.desktop-nav a:hover {
+nav a:hover {
   color: var(--secondary-green);
 }
 
-nav.desktop-nav a::after {
+nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -107,49 +132,12 @@ nav.desktop-nav a::after {
   transition: width 0.3s ease;
 }
 
-nav.desktop-nav a:hover::after {
+nav a:hover::after {
   width: 100%;
 }
 
-/* Navegação Mobile */
-nav.mobile-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-nav.mobile-nav.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-nav.mobile-nav a {
-  color: var(--text-dark);
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-nav.mobile-nav a:hover {
-  color: var(--secondary-green);
-}
-
-/* Botões */
 .btn-primary {
-  background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+  background: var(--gradient-green);
   color: var(--white);
   border: none;
   border-radius: 50px;
@@ -192,7 +180,6 @@ nav.mobile-nav a:hover {
   border-color: var(--secondary-green);
 }
 
-/* Seções */
 section {
   padding: 5rem 1rem;
 }
@@ -216,7 +203,6 @@ section {
   border-radius: 2px;
 }
 
-/* Cards */
 .card {
   background-color: var(--white);
   border-radius: 16px;
@@ -253,49 +239,104 @@ section {
   line-height: 1.6;
 }
 
-/* Benefícios */
-.beneficio-item {
-  text-align: center;
-  padding: 2rem;
-  border-radius: 16px;
-  height: auto;
-  min-height: 120px;
-  justify-content: flex-start;
-  overflow: visible;
-  padding-bottom: 1rem;
-
-/* Compact view for cards that are not active */
-.panc-card:not(.active) .panc-info {
-  height: 95px;
-  overflow: hidden;
-  padding-bottom: 0.4rem;
-  justify-content: flex-start;
-  border: 1px solid rgba(129, 199, 132, 0.1);
+.beneficio-card {
   transition: all 0.3s ease;
+  border: 1px solid rgba(129, 199, 132, 0.2);
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  height: 100%;
 }
 
-.beneficio-item:hover {
-  background-color: rgba(129, 199, 132, 0.1);
+.beneficio-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(27, 94, 32, 0.1);
+  border-color: var(--accent-green);
 }
 
-.beneficio-icon {
+.beneficio-icon-large {
   width: 80px;
   height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+  background: var(--gradient-green);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.beneficio-icon i {
+  margin: 0 auto 1.5rem;
+  color: white;
   font-size: 2rem;
-  color: var(--white);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
 }
 
-/* Formulário */
+.beneficio-icons-small {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.beneficio-icons-small i {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.beneficio-icons-small i:hover {
+  transform: scale(1.2);
+}
+
+.icon-water { color: #3B82F6; }
+.icon-sun { color: #F59E0B; }
+.icon-recycle { color: #10B981; }
+.icon-apple { color: #EF4444; }
+.icon-vitamin { color: #F97316; }
+.icon-plant { color: #16A34A; }
+.icon-home { color: #6366F1; }
+.icon-school { color: #8B5CF6; }
+.icon-food { color: #D97706; }
+
+.beneficio-tag {
+  background: var(--gradient-green);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+}
+
+.estatistica-item {
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.estatistica-item:hover {
+  background: rgba(129, 199, 132, 0.1);
+  transform: translateY(-3px);
+}
+
+.estatistica-numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.estatistica-texto {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -329,7 +370,6 @@ textarea.form-control {
   resize: vertical;
 }
 
-/* Footer */
 footer {
   background: linear-gradient(135deg, var(--primary-green), #1a472a);
   color: var(--white);
@@ -369,7 +409,6 @@ footer {
   font-size: 0.875rem;
 }
 
-/* Animações */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -385,68 +424,8 @@ footer {
   animation: fadeIn 0.6s ease-out;
 }
 
-/* Responsividade */
-@media (max-width: 1024px) {
-  section {
-    padding: 4rem 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-  
-  nav.desktop-nav {
-    display: none;
-  }
-  
-  .section-header {
-    margin-bottom: 2rem;
-  }
-  
-  .card {
-    margin-bottom: 1.5rem;
-  }
-  
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  section {
-    padding: 3rem 1rem;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.75rem;
-  }
-  .card-content {
-    padding: 1.25rem;
-  }
-  
-  footer {
-    padding: 3rem 1rem 1.5rem;
-  }
-}
-
-/* Non-active card name truncation (desktop and all viewports) */
-.panc-card:not(.active) .panc-nome {
-  -webkit-line-clamp: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Utilitários */
 .text-gradient {
-  background: linear-gradient(135deg, var(--secondary-green), var(--light-green));
+  background: var(--gradient-green);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -460,12 +439,14 @@ footer {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Scroll suave */
+.eco-gradient {
+  background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Estilização da barra de rolagem */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -483,200 +464,282 @@ html {
   background: var(--light-green);
 }
 
-/* Estilos para o carrossel (adicione se não estiverem no index.html) */
 .carrossel-container {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  padding: 2rem 0;
-  margin: 2rem 0;
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 0 1rem;
 }
 
 .carrossel-titulo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  padding-left: 1rem;
-  color: var(--text-dark);
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+  color: var(--primary-green);
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.carrossel-titulo::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0.5rem;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--light-green), var(--accent-green));
+  border-radius: 2px;
 }
 
 .carrossel-wrapper {
   position: relative;
   width: 100%;
-  height: 380px;
+  height: 420px;
   display: flex;
   align-items: center;
+  overflow: hidden;
 }
 
 .carrossel {
   display: flex;
-  gap: 1rem;
-  padding: 0 3rem;
+  gap: 1.5rem;
+  padding: 0 4rem;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   height: 100%;
   align-items: center;
+  will-change: transform;
 }
 
 .panc-card {
   flex: 0 0 auto;
-  width: 220px;
-  height: 260px;
-  border-radius: 12px;
+  width: 260px;
+  height: 380px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  box-shadow: 0 10px 30px var(--shadow-dark);
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  border: 1px solid rgba(129, 199, 132, 0.15);
 }
 
 .panc-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-5px);
   z-index: 10;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px rgba(27, 94, 32, 0.2);
+  border-color: var(--accent-green);
 }
 
 .panc-card.active {
-  width: 300px;
-  height: 360px;
-  transform: scale(1.1);
+  width: 340px;
+  height: 460px;
+  transform: scale(1.08) translateY(-10px);
   z-index: 20;
-  box-shadow: 0 16px 40px rgba(27, 94, 32, 0.3);
+  box-shadow: 0 25px 50px rgba(27, 94, 32, 0.25);
+  border: 2px solid var(--secondary-green);
 }
 
-.panc-card.active::after {
+.panc-card.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--light-green), var(--accent-green));
+  z-index: 5;
+}
+
+.panc-imagem-container {
+  flex: 0 0 65%;
+  overflow: hidden;
+  position: relative;
+}
+
+.panc-imagem-container::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 5px;
-  background: linear-gradient(to right, var(--light-green), var(--accent-green));
+  height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+  pointer-events: none;
 }
 
 .panc-imagem {
   width: 100%;
-  height: 60%;
+  height: 100%;
   object-fit: cover;
-  transition: height 0.4s ease;
-  flex: 0 0 auto;
+  transition: all 0.4s ease;
 }
 
 .panc-card.active .panc-imagem {
-  height: 70%;
+  height: 60%;
+  filter: brightness(1.05);
 }
 
 .panc-info {
-  padding: 1rem;
-  padding: 0.85rem;
-  min-height: 80px;
-  background: rgba(255,255,255,0.98);
+  flex: 1;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.98);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.45rem;
-  align-items: flex-start;
   position: relative;
   z-index: 3;
-  transition: height 0.3s ease, padding 0.3s ease;
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.02);
-  flex: 1 0 auto;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.panc-card:not(.active) .panc-info {
+  min-height: 35%;
+  max-height: 35%;
+  padding: 1rem;
+  justify-content: flex-start;
 }
 
 .panc-card.active .panc-info {
-  height: auto;
-  min-height: 120px;
+  min-height: 40%;
+  max-height: 40%;
+  padding: 1.5rem;
   justify-content: flex-start;
-  overflow: visible;
-  padding-bottom: 1rem;
 }
 
 .panc-nome {
-  font-size: 1.05rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--primary-green);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  flex-shrink: 0;
+  letter-spacing: -0.3px;
+}
+
+.panc-card:not(.active) .panc-nome {
+  font-size: 1.15rem;
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  white-space: normal;
-  line-height: 1.15;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  min-height: 2.4rem;
-  position: relative;
-  z-index: 4;
-}
-
-.panc-card.active .panc-nome {
-  font-size: 1.3rem;
-  -webkit-line-clamp: 3;
-  white-space: normal;
-}
-
-.panc-descricao {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   overflow: hidden;
+  display: block;
   margin-bottom: 0.4rem;
 }
 
-/* Hide description and tags as requested */
-.panc-descricao {
-  display: -webkit-box;
+.panc-card.active .panc-nome {
+  font-size: 1.5rem;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.panc-nome-cientifico {
+  font-size: 0.8rem;
   color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  display: none;
 }
 
-.panc-tags {
-  display: flex;
-  gap: 0.35rem;
-  flex-wrap: wrap;
-  margin-top: 0.35rem;
+.panc-card.active .panc-nome-cientifico {
+  display: block;
 }
 
-.panc-card.active .panc-descricao {
-  -webkit-line-clamp: 6;
+.panc-descricao {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  flex: 1;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
 }
 
 .panc-card:not(.active) .panc-descricao {
+  font-size: 0.82rem;
   -webkit-line-clamp: 2;
-  opacity: 0.95;
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.panc-card.active .panc-descricao {
+  -webkit-line-clamp: 4;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  opacity: 1;
 }
 
 .panc-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.4rem;
+  gap: 0.5rem;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 
 .panc-tag {
-  font-size: 0.7rem;
-  padding: 0.2rem 0.6rem;
-  background: var(--accent-green);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.8rem;
+  background: var(--gradient-green);
   color: white;
-  border-radius: 12px;
-  font-weight: 500;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.panc-card:not(.active) .panc-tags {
+  gap: 0.35rem;
+}
+
+.panc-card:not(.active) .panc-tag {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  background: var(--accent-green);
+}
+
+.panc-card.active .panc-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.panc-card.active .panc-info::before {
+  content: '⭐ DESTAQUE';
+  position: absolute;
+  top: -10px;
+  right: 15px;
+  background: var(--secondary-green);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 10px;
+  z-index: 4;
+  letter-spacing: 0.5px;
 }
 
 .carrossel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: auto;
-  min-height: 72px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   border-radius: 50%;
   display: flex;
@@ -684,100 +747,340 @@ html {
   justify-content: center;
   cursor: pointer;
   z-index: 30;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .carrossel-btn:hover {
   background: white;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 12px 30px rgba(27, 94, 32, 0.25);
 }
 
 .carrossel-btn.prev {
-  left: 0.5rem;
+  left: 1rem;
 }
 
 .carrossel-btn.next {
-  right: 0.5rem;
+  right: 1rem;
 }
 
 .carrossel-btn i {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--primary-green);
+  transition: transform 0.3s ease;
+}
+
+.carrossel-btn:hover i {
+  transform: scale(1.2);
 }
 
 .carrossel-indicators {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding-bottom: 1rem;
 }
 
 .indicator {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--accent-green);
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.indicator::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.indicator:hover {
+  opacity: 0.7;
+  transform: scale(1.2);
 }
 
 .indicator.active {
   opacity: 1;
-  width: 24px;
-  border-radius: 4px;
-  background: var(--secondary-green);
+  width: 30px;
+  border-radius: 15px;
+  background: var(--gradient-green);
+  transform: scale(1.1);
 }
 
-/* Responsividade do Carrossel */
-@media (max-width: 768px) {
+.carrossel-counter {
+  position: absolute;
+  bottom: -25px;
+  right: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-green);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+#backToTop.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#backToTop:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+}
+
+@media (max-width: 1200px) {
+  .carrossel-container {
+    max-width: 95%;
+  }
+  
   .panc-card {
-    width: 180px;
+    width: 240px;
+    height: 360px;
+  }
+  
+  .panc-card.active {
+    width: 300px;
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carrossel-titulo {
+    font-size: 1.8rem;
+    padding-left: 0.5rem;
+  }
+  
+  .carrossel-titulo::after {
+    left: 0.5rem;
+    width: 60px;
+  }
+  
+  .carrossel-wrapper {
+    height: 380px;
+  }
+  
+  .panc-card {
+    width: 200px;
+    height: 320px;
+  }
+  
+  .panc-card.active {
+    width: 260px;
+    height: 380px;
+  }
+  
+  .carrossel {
+    padding: 0 3rem;
+    gap: 1.2rem;
+  }
+  
+  .carrossel-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .carrossel-btn.prev {
+    left: 0.5rem;
+  }
+  
+  .carrossel-btn.next {
+    right: 0.5rem;
+  }
+  
+  .panc-card.active .panc-nome {
+    font-size: 1.35rem;
+  }
+  
+  .panc-card.active .panc-descricao {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 3;
+  }
+  
+  .beneficio-icon-large {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+  
+  .beneficio-icons-small i {
+    font-size: 1.25rem;
+  }
+  
+  .estatistica-numero {
+    font-size: 2rem;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--white);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  nav.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  nav a {
+    font-size: 1.5rem;
+    border-bottom: none;
+  }
+  
+  #backToTop {
+    width: 45px;
+    height: 45px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carrossel-titulo {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .carrossel-wrapper {
+    height: 340px;
+  }
+  
+  .panc-card {
+    width: 170px;
     height: 280px;
   }
   
   .panc-card.active {
-    width: 240px;
-    height: 320px;
+    width: 220px;
+    height: 340px;
   }
   
   .carrossel {
-    padding: 0 2rem;
+    padding: 0 2.5rem;
+    gap: 1rem;
   }
   
   .carrossel-btn {
     width: 40px;
     height: 40px;
   }
-}
-
-@media (max-width: 480px) {
-  .panc-card {
-    width: 160px;
-    height: 240px;
+  
+  .carrossel-btn i {
+    font-size: 1.2rem;
   }
   
-  .panc-card.active {
-    width: 200px;
-    height: 280px;
+  .panc-card:not(.active) .panc-info {
+    padding: 0.75rem;
   }
   
-  .carrossel {
-    padding: 0 1.5rem;
+  .panc-card:not(.active) .panc-nome {
+    font-size: 1rem;
   }
   
-  .carrossel-btn {
-    width: 35px;
-    height: 35px;
+  .panc-card:not(.active) .panc-descricao {
+    font-size: 0.75rem;
   }
   
-  .carrossel-btn.prev {
-    left: 0.2rem;
+  .panc-card.active .panc-info {
+    padding: 1.25rem;
   }
   
-  .carrossel-btn.next {
-    right: 0.2rem;
+  .panc-card.active .panc-nome {
+    font-size: 1.2rem;
+  }
+  
+  .panc-card.active .panc-descricao {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 3;
+  }
+  
+  .carrossel-indicators {
+    margin-top: 2rem;
+    gap: 0.5rem;
+  }
+  
+  section {
+    padding: 3rem 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .card-content {
+    padding: 1.25rem;
+  }
+  
+  footer {
+    padding: 3rem 1rem 1.5rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .beneficio-card {
+    padding: 1.5rem;
   }
 }

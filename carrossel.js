@@ -1,8 +1,6 @@
-// carrossel.js - Script organizado para o carrossel
 document.addEventListener('DOMContentLoaded', function() {
   console.log('🚀 Inicializando carrossel organizado...');
   
-  // Dados das PANCs com informações completas
   const pancs = [
     {
       id: 1,
@@ -69,24 +67,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   ];
 
-  // Elementos do DOM
   const carrossel = document.getElementById('pancCarrossel');
   const indicatorsContainer = document.getElementById('carrosselIndicators');
   const prevBtn = document.querySelector('.carrossel-btn.prev');
   const nextBtn = document.querySelector('.carrossel-btn.next');
+  const carrosselContainer = carrossel ? carrossel.closest('.carrossel-container') : null;
 
-  // Configurações
-  const baseCount = pancs.length; // número de PANCs originais
-  const cardsPerView = 5;
-  const totalSlides = Math.ceil(baseCount / 3); // 3 cards por slide
-  let cardWidth = 0; // será medido dinamicamente
+  const baseCount = pancs.length; 
+  const totalSlides = Math.ceil(baseCount / 3); 
+  let cardWidth = 0; 
   let gap = 24;
-  let currentIndex = baseCount + 2; // começar no segmento do meio para facilitar loop infinito
+  let currentIndex = baseCount + 2; 
 
-  // Duplicar itens para permitir loop infinito visual (prático)
   let items = [...pancs, ...pancs, ...pancs];
 
-  // Inicializar carrossel
   function initCarrossel() {
     if (!carrossel) {
       console.error('❌ Elemento #pancCarrossel não encontrado!');
@@ -96,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(`✅ Carregando ${pancs.length} PANCs no carrossel`);
     createCards();
     createIndicators();
+    addSlideCounter();
     setupEventListeners();
     startAutoPlay();
   }
 
-  // Criar cards
   function createCards() {
     carrossel.innerHTML = '';
     
@@ -113,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `Ver detalhes sobre ${panc.nome}`);
       
-      // Ativar card inicial
       if (index === currentIndex) {
         card.classList.add('active');
       }
@@ -127,7 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/4CAF50/FFFFFF?text=${encodeURIComponent(panc.nome)}'">
         </div>
         <div class="panc-info">
-          <h4 class="panc-nome" title="${panc.nome}">${panc.nome.replace(/-/g, '\u2011')}</h4>
+          <h4 class="panc-nome" title="${panc.nome}">${panc.nome}</h4>
+          <p class="panc-nome-cientifico">${panc.nomeCientifico}</p>
           <p class="panc-descricao">${panc.descricao}</p>
           <div class="panc-tags">
             ${panc.tags.map(tag => `<span class="panc-tag">${tag}</span>`).join('')}
@@ -135,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       `;
       
-      // Eventos do card
       card.addEventListener('click', () => setActiveCard(index));
       card.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -145,35 +138,17 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       carrossel.appendChild(card);
-
-      // Re-medir quando a imagem carregar ou falhar, para evitar reposicionamento incorreto
-      const imgEl = card.querySelector('img');
-      if (imgEl) {
-        imgEl.addEventListener('load', () => {
-          measureSizes();
-          updateCarrossel(false);
-        }, { passive: true });
-        imgEl.addEventListener('error', () => {
-          measureSizes();
-          updateCarrossel(false);
-        }, { passive: true });
-      }
     });
     
-    // Medir tamanhos e posicionar sem animação inicialmente (medições adicionais para imagens)
     measureSizes();
     updateCarrossel(false);
-    requestAnimationFrame(() => {
+    
+    setTimeout(() => {
       measureSizes();
       updateCarrossel(false);
-      setTimeout(() => {
-        measureSizes();
-        updateCarrossel(false);
-      }, 250);
-    });
+    }, 100);
   }
 
-  // Criar indicadores
   function createIndicators() {
     if (!indicatorsContainer) return;
     
@@ -203,6 +178,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  function addSlideCounter() {
+    if (!carrosselContainer) return;
+    
+    const existingCounter = carrosselContainer.querySelector('.carrossel-counter');
+    if (existingCounter) existingCounter.remove();
+    
+    const counter = document.createElement('div');
+    counter.className = 'carrossel-counter';
+    updateSlideCounter(counter);
+    carrosselContainer.appendChild(counter);
+  }
+
+  function updateSlideCounter(counter) {
+    if (!counter) return;
+    const currentSlide = Math.floor((currentIndex % baseCount) / 3) + 1;
+    counter.textContent = `${currentSlide} / ${totalSlides}`;
+  }
+
   function measureSizes() {
     const firstCard = carrossel.querySelector('.panc-card');
     if (!firstCard) return;
@@ -211,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cardWidth = firstCard.getBoundingClientRect().width;
   }
 
-  // Atualizar carrossel (centraliza o card ativo). Se animate=false, remove transição para reposicionamento instantâneo.
   function updateCarrossel(animate = true) {
     measureSizes();
     const wrapperRect = carrossel.parentElement.getBoundingClientRect();
@@ -221,21 +213,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!animate) {
       carrossel.style.transition = 'none';
       carrossel.style.transform = `translateX(${translateX}px)`;
-      // força reflow e restaura transição
-      carrossel.getBoundingClientRect();
+      void carrossel.offsetWidth;
       carrossel.style.transition = '';
     } else {
       carrossel.style.transform = `translateX(${translateX}px)`;
     }
 
-    // Atualizar cards ativos (baseado no índice absoluto dentro de items)
     document.querySelectorAll('.panc-card').forEach((card, index) => {
       const isActive = index === currentIndex;
       card.classList.toggle('active', isActive);
       card.setAttribute('aria-selected', isActive);
     });
 
-    // Atualizar indicadores com base no segmento real
     if (indicatorsContainer) {
       const currentSlide = Math.floor((currentIndex % baseCount) / 3);
       document.querySelectorAll('.indicator').forEach((indicator, index) => {
@@ -243,10 +232,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    console.log(`📌 Card ativo: ${pancs[currentIndex % baseCount]?.nome || 'Nenhum'}`);
+    const counter = document.querySelector('.carrossel-counter');
+    if (counter) updateSlideCounter(counter);
+
+    console.log(`📌 Card ativo: ${pancs[currentIndex % baseCount]?.nome || 'Nenhum'} (Slide: ${Math.floor((currentIndex % baseCount) / 3) + 1}/${totalSlides})`);
   }
 
-  // Funções de navegação
   function setActiveCard(index) {
     const real = index % baseCount;
     currentIndex = baseCount + real;
@@ -268,9 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCarrossel();
   }
 
-  // Configurar event listeners
   function setupEventListeners() {
-    // Botões de navegação
     if (prevBtn) {
       prevBtn.addEventListener('click', goPrev);
     }
@@ -279,15 +268,13 @@ document.addEventListener('DOMContentLoaded', function() {
       nextBtn.addEventListener('click', goNext);
     }
     
-    // Navegação por teclado
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') goPrev();
       if (e.key === 'ArrowRight') goNext();
     });
     
-    // Swipe para mobile
     setupSwipe();
-    // Reposiciona o carrossel ao terminar a transição (para o loop infinito)
+    
     carrossel.addEventListener('transitionend', () => {
       if (currentIndex < baseCount) {
         currentIndex += baseCount;
@@ -297,14 +284,13 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCarrossel(false);
       }
     });
-    // Recalcula e reposiciona ao redimensionar
+    
     window.addEventListener('resize', () => {
       measureSizes();
       updateCarrossel(false);
     });
   }
 
-  // Configurar swipe para mobile
   function setupSwipe() {
     let touchStartX = 0;
     let touchEndX = 0;
@@ -332,35 +318,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Auto-play
   let autoPlayInterval;
   
   function startAutoPlay() {
     if (autoPlayInterval) clearInterval(autoPlayInterval);
     autoPlayInterval = setInterval(goNext, 5000);
     
-    // Pausar auto-play ao interagir
-    carrossel.addEventListener('mouseenter', () => {
+    const pauseAutoPlay = () => {
       clearInterval(autoPlayInterval);
-    });
+    };
     
-    carrossel.addEventListener('mouseleave', () => {
+    const resumeAutoPlay = () => {
       if (autoPlayInterval) clearInterval(autoPlayInterval);
       autoPlayInterval = setInterval(goNext, 5000);
-    });
+    };
     
-    // Pausar ao focar em elementos interativos
-    carrossel.addEventListener('focusin', () => {
-      clearInterval(autoPlayInterval);
-    });
+    carrossel.addEventListener('mouseenter', pauseAutoPlay);
+    carrossel.addEventListener('mouseleave', resumeAutoPlay);
+    carrossel.addEventListener('focusin', pauseAutoPlay);
+    carrossel.addEventListener('focusout', resumeAutoPlay);
+    carrossel.addEventListener('touchstart', pauseAutoPlay);
     
-    carrossel.addEventListener('focusout', () => {
-      if (autoPlayInterval) clearInterval(autoPlayInterval);
-      autoPlayInterval = setInterval(goNext, 5000);
+    carrossel.addEventListener('touchend', () => {
+      setTimeout(resumeAutoPlay, 10000);
     });
   }
 
-  // Inicializar
   initCarrossel();
   console.log('✅ Carrossel organizado inicializado com sucesso!');
-});     
+});
